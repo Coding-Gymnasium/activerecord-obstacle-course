@@ -34,7 +34,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     ]
     
     # ----------------------- Using Ruby -------------------------
-    orders = Order.all.sort_by { |order| order.amount }.reverse
+    # orders = Order.all.sort_by { |order| order.amount }.reverse
     # ------------------------------------------------------------
     
     # ------------------ Using ActiveRecord ----------------------
@@ -90,14 +90,14 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     expected_result = [@item_4, @item_2, @item_5, @item_3]
     
     # ----------------------- Using Ruby -------------------------
-    order = Order.find(@order_3.id)
+    # order = Order.find(@order_3.id)
     # grouped_items = order.items.sort_by { |item| item.name }
     # ------------------------------------------------------------
     
     # ------------------ Using ActiveRecord ----------------------
     # Solution goes here
     
-    grouped_items = order.items.order(:name)
+    grouped_items = Order.find(@order_3.id).items.order(:name)
     # ------------------------------------------------------------
     
     # Expectation
@@ -149,7 +149,7 @@ describe 'ActiveRecord Obstacle Course, Week 2' do
     # names = names.flatten
     # ------------------------------------------------------------
     
-    binding.pry
+    # binding.pry
     # ------------------ Using ActiveRecord ----------------------
     # Solution goes here
     names = Item.joins(:orders).pluck(:name)
