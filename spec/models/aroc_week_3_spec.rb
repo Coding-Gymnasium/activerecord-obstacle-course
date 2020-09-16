@@ -54,6 +54,8 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
   
   it '18. returns the names of items for a users order' do
     expected_result = ['Giorgio Armani', 'Banana Republic', 'Izod', 'Fox']
+    expected_result_2 = ["Abercrombie", "Dickies", "Giorgio Armani"]
+
     
     # ----------------------- Using Ruby -------------------------
     # items_for_user_3_third_order = []
@@ -71,10 +73,12 @@ describe 'ActiveRecord Obstacle Course, Week 3' do
     # ------------------ Using ActiveRecord ----------------------
     # Solution goes here
     items_for_user_3_third_order = @user_3.orders.find(12).items.pluck(:name)
+    items_for_user_1_first_order = Order.joins(:user).where('user_id = 1').first.items.distinct.pluck(:name)
     # ------------------------------------------------------------
     
     # Expectation
     expect(items_for_user_3_third_order).to eq(expected_result)
+    expect(items_for_user_1_first_order).to eq(expected_result_2)
   end
   
   it '19. returns the average amount for all orders' do
